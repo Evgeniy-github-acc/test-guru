@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Список сущностей для проекта TestGuru:
+
+1. Администратор.
+2. Пользователь.
+3. Тест.
