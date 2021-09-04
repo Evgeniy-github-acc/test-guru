@@ -14,24 +14,28 @@ categories = Category.create([{title: 'Frontend'},
     {title: 'General Development'}
     ])
 
+category_ids = Category.pluck(:id)
 
 20.times do |index|
  Test.create!(title: Faker::ProgrammingLanguage.name,
               level: rand(4),
-              category_id: rand(1..4)
+              category_id: category_ids.sample
               )
 end
 
+test_ids = Test.pluck(:id)
+
 20.times do |index|
   Question.create!(body: Faker::Lorem.question(word_count: 4),
-                   test_id: rand(1..20)
+                   test_id: test_ids.sample
                   )
 end    
 
+question_ids = Question.pluck(:id)
 
 20.times do |index|
   Answer.create!(body: Faker::Lorem.sentence(word_count: 4),
-                 question_id:rand(1..20)
+                 question_id: question_ids.sample
                 )
 end    
 
