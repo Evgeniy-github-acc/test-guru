@@ -1,6 +1,6 @@
 module TestGuru
   class << self
-    VERSION = '1.0.0'
+    VERSION = '0.1.0'
     def version
       VERSION
     end
