@@ -23,7 +23,12 @@ class QuestionsController < ApplicationController
   end
   
   def create
-    question = @test.questions.new(params.require(:question).permit(:body))
+    question = @test.questions.new(question_params)
+    if question.save
+      render inline: '<h1>Question created</h1>'
+    else
+      render inline: '<h1>Error check your params</h1>'
+    end
   end
 
   def destroy
@@ -37,6 +42,10 @@ class QuestionsController < ApplicationController
   
   def define_question
     @question = Question.find(params[:id])
+  end
+
+  def question_params
+    params.require(:question).permit(:body)
   end
 
   def rescue_with_question_not_found
