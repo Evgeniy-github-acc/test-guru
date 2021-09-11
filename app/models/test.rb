@@ -5,9 +5,18 @@ class Test < ApplicationRecord
   has_many :users, through: :tests_users
   belongs_to :author, foreign_key: "user_id", class_name: 'User'
 
+  validates :title, presence: true, uniqueness: {scope: :level}
+  validates :level, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+
+  scope :level_sort, -> (level) { where(level: level) }
+  scope :easy, -> { level_sort(0..1) }
+  scope :medium, -> { level_sort(2..4) }
+  scope :hard, -> { level_sort(5..Float::INFINITY) }
+
+  scope :tests_by_category, -> (category) { joins('JOIN categories ON categories.id = tests.category_id')
+    .where('categories.title = ?', category) }
+  
   def self.sorted_category(category)
-    Test.joins('INNER JOIN categories ON tests.category_id = categories.id').
-    where('categories.title = ?', category).order("tests.created_at DESC").
-    pluck(:title)
+    tests_by_category(category).order(title: :desc).pluck(:title)
   end
 end
