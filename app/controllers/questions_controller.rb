@@ -1,27 +1,30 @@
 class QuestionsController < ApplicationController
   
-  before_action :define_question, only: [:show]
+  before_action :define_question, only: [:show, :edit, :update, :destroy]
   before_action :define_test, only: [:index, :new, :create]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def index
-    render inline: '<h1>Test: <%= @test.title %></h1>
-                    <% @test.questions.each do |question| -%>
-                    <%= content_tag :p, question.id %> 
-                    <%= content_tag :p, question.body %>
-                    <% end -%>'
+    
   end
 
   def show
-    render inline: '<div>Question: <%= @question.id %>  <%= @question.body %></div>
-                    <div>in Test: <%= @question.test.title %></div>'
+  
   end
 
   def new
     @question = Question.new
   end
   
+  def edit
+  end
+
+  def update
+    @question.update(question_params)
+    redirect_to question_path(@question)
+  end
+
   def create
     question = @test.questions.new(question_params)
     if question.save
@@ -32,7 +35,9 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
+    @test = @question.test
     @question.destroy
+    redirect_to test_questions_path(@test)
   end
 
   private
