@@ -1,0 +1,12 @@
+<h1><%= @test_passage.test.title %> Test was completed</h1>
+
+<% if @test_passage.success? %>
+  <p>You have successfully passed the test!</p>
+  <p class="succeed">Your result: <%= @test_passage.result %>%</p>
+<% else %>
+  <p>You didn't pass the test.</p>
+  <p class="not_succeed">Your result: <%= @test_passage.result %>%</p>
+<% end %>
+<div>
+  <%= link_to "All tests", tests_path %>
+</div>
