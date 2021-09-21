@@ -8,7 +8,7 @@ class Answer < ApplicationRecord
 
   MAX_ANSWERS = 4
 
-  scope :correct_answers, -> { where(correct: true) }
+  scope :correct, -> { where(correct: true) }
 
   private
 

@@ -15,36 +15,37 @@ categories = Category.create([{title: 'Frontend'},
     ])
 
 20.times do |index|
- Test.create!(title: Faker::ProgrammingLanguage.name,
-              level: rand(4),
-              category_id: Category.ids.sample
+  User.create!(login: Faker::Internet.username,
+               password: Faker::Internet.password,
+               name: Faker::Name.name
+               )
+  end
+
+user  = User.first
+
+tests = []
+20.times do |index|
+tests << Test.create!(title: Faker::ProgrammingLanguage.name,
+              level: rand(3),
+              category_id: categories.sample.id,
+              author: user
               )
+                
 end
 
 
+questions = []
 20.times do |index|
-  Question.create!(body: Faker::Lorem.question(word_count: 4),
-                   test_id: Test.ids.sample
+  questions << Question.create!(body: Faker::Lorem.question(word_count: 4),
+                   test_id: tests.sample.id
                   )
 end    
 
 
 20.times do |index|
   Answer.create!(body: Faker::Lorem.sentence(word_count: 4),
-                 question_id: Question.ids.sample
+                 correct: [true, false].sample, 
+                 question_id: questions.sample.id
                 )
 end    
 
-
-20.times do |index|
-  User.create!(login: Faker::Internet.username,
-               password: Faker::Internet.password,
-               name: Faker::Name.name
-               )
-end
-
-30.times do |index|
-    TestsUser.create!(user_id: User.ids.sample,
-                       test_id: Test.ids.sample
-                    )
-end    
