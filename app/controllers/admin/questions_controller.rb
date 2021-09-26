@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class Admin::QuestionsController < Admin::BaseController
   
   before_action :authenticate_user!
   before_action :define_question, only: [:show, :edit, :update, :destroy]
@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
 
   def update
     @question.update(question_params)
-    redirect_to question_path(@question)
+    redirect_to admin_question_path(@question)
   end
 
   def create
@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to test_path(@question.test)
+    redirect_to admin_test_path(@question.test)
   end
 
   private
