@@ -1,0 +1,33 @@
+en:
+  activerecord:
+    models:
+      test: "Test"
+      question: "Question"
+      answer: "Answer"
+      category: "Category"
+      user: "User"
+      admin: "Admin"
+  
+    attributes:
+      test:
+        title: "Title"
+        level: "Level"
+        created_at: "Created"
+        updated_at: "Updated"
+        category_id: "Category"
+        user_id: "Author"
+    
+      category:
+        title: "Title"
+        created_at: "Created"
+        updated_at: "Updated"
+        
+      question:
+        body: "Question"
+        created_at: "Created"
+        updated_at: "Updated"
+        test_id: "Test"
+  
+    errors:
+      messages:
+        blank: "can't be blank"

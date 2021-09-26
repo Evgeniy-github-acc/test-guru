@@ -1,12 +1,11 @@
-<h1>Test: <%= @test.title %></h1>
+<h1><%= t('.header', title: @test.title)%></h1>
 
 <table>
   <tr>
-    <th>Number</th>
-    <th>Body</th>
+    <th><%= t('.question') %></th>
     
   <%= render @test.questions %>
 </table>
 <div>
-  <%= link_to "Add question", new_admin_test_question_path(@test) %>
+  <%= link_to t(".add_question"), new_admin_test_question_path(@test) %>
 </div>           
