@@ -1,6 +1,6 @@
 class Admin::TestsController < Admin::BaseController
 
-  before_action :set_test, only: %i[show edit update destroy start]
+  before_action :set_test, only: %i[show edit update destroy ]
     
   def index
     @tests = Test.all
@@ -19,11 +19,10 @@ class Admin::TestsController < Admin::BaseController
   end
   
   def create
-    @test = Test.new(test_params)
+    @test = current_user.created_tests.new(test_params)
 
     if @test.save
-      current_user.created_tests.push(@test)
-      redirect_to admin_tests_path
+      redirect_to [:admin, @test], notice:  t('.success')
     else
       render :new
     end
@@ -31,15 +30,15 @@ class Admin::TestsController < Admin::BaseController
   
   def update
     if @test.update(test_params)
-      redirect_to admin_tests_path
+      redirect_to [:admin, @test], notice:  t('.success')
     else
       render :edit
     end
   end
 
-  def start
-    current_user.tests.push(@test)
-    redirect_to current_user.test_passage(@test)
+  def destroy
+    @test.destroy
+    redirect_to [:admin, @test], notice:  t('.success')
   end
 
   private
