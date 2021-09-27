@@ -1,8 +1,13 @@
-<div class="nav nav-admin">
-  <span class="nav-admin title">TestGuru Admin Panel</span>
-
-  <div class="nav-admin user">
-    Welcome, <b clas="nav-admin user-email"><%= current_user.email %></b>Guru |
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-  </div>
-</div>
+  <nav class="navbar navbar-light bg-info">
+   <h1><%= link_to "TestGuru", root_path, class: 'navbar-brand' %></h1>
+    Admin Panel
+    <span class="navbar-text">
+      <% if user_signed_in? %>
+        <p class="nav user">Welcome, <b> <%= current_user.email %></b> Guru |  
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+      <% else %>
+        <%= link_to "Log in", new_session_path(resource_name) %> |
+        <%= link_to "Sign up", new_registration_path(resource_name) %>
+      <% end %>
+    </span>
+  </nav>
