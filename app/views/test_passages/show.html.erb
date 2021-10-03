@@ -20,6 +20,7 @@
             </div>  
           
             <% end %>
+            <%= link_to 'Gist Question', gist_test_passage_path(@test_passage), method: :post, class: "btn btn-alert" %>
             <%= form.submit 'Next', class: "btn btn-primary" %>
           <% end %>
     </div>      

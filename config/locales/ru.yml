@@ -34,7 +34,14 @@ ru:
     
   test_passages:
     result:
-      header: "Тест %{title} успешно завершен"    
+      header: "Тест %{title} успешно завершен"
+    gist:
+      success: "Gist успешно опубликован %{link}"
+      failure:  "Произошла ошибка во время публикации"
+
+  services:
+    gist_question_service:
+      descrition: "Вопрос о %{@test.title} из TestGuru"    
 
   admin:
     tests:
@@ -58,6 +65,13 @@ ru:
         header: "Тест:"
         question: "Вопрос:"
         add_question: "Добавить вопрос"
+
+    gists:
+      index:
+        .header: "Gists"
+        .question: "Вопрос"
+        .user_email: "Email пользователя"
+        .gist_body: "Gist" 
       
   tests_mailer:
     completed_test:

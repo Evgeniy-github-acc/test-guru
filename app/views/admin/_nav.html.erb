@@ -3,6 +3,7 @@
     Admin Panel
     <span class="navbar-text">
       <% if user_signed_in? %>
+        <%= link_to "Gists", admin_gists_path %></p>
         <p class="nav user">Welcome, <b> <%= current_user.email %></b> Guru |  
         <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
       <% else %>

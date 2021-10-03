@@ -33,7 +33,14 @@ en:
   
   test_passages:
     result:
-      header: "The %{title} Test was Completed"    
+      header: "The %{title} Test was Completed"
+    gist:
+      success: "Gist was successfuly published %{link}"
+      failure:  "An error occurred whle publishing gist"
+  
+  services:
+    gist_question_service:
+      descrition: "A question about %{@test.title} from TestGuru"
 
   admin:
     tests:
@@ -56,7 +63,14 @@ en:
       show:
         header: "Test:"
         question: "Question:"
-        add_question: "Add question"          
+        add_question: "Add question"
+  
+    gists:
+      index:
+        .header: "Gists"
+        .question: "Qustion"
+        .user_email: "User email"
+        .gist_body: "Gist" 
   
   tests_mailer:
     completed_test:
