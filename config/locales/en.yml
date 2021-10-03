@@ -49,6 +49,8 @@ en:
           prompt: "Select category"
       create:
         success: "Test was succesfuly created."
+      form_inline:
+        submit: "OK"    
         
       index:
         header: "Avaliable tests"
