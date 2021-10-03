@@ -5,7 +5,7 @@ class GistQuestionService
   def initialize(question, client: nil)
     @question = question
     @test = @question.test
-    @client = client || Octokit::Client.new( access_token: ENV['GIT_ACCESS'] )  
+    @client = client || Octokit::Client.new( :access_token => ENV['GIT_ACCESS'] )  
   end
 
   def call
