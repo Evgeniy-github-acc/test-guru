@@ -4,6 +4,8 @@
   <h3><%= t('.header') %></h3> 
   
   <div class="m-1"><%= link_to t('.new'), new_admin_test_path, {:class => 'btn btn-info' } %></div>
+
+  <%= render 'shared/errors', resource: @test %>
   
   
     <table class="table table-light table-bordered">

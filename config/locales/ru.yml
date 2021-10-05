@@ -50,6 +50,8 @@ ru:
           prompt: "Укажите категорию"
       create:
         success: "Тест успешно создан."
+      form_inline:
+        submit: "OK"  
         
       index:
         header: "Доступные тесты"

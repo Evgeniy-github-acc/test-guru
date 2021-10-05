@@ -23,6 +23,9 @@
             <%= link_to 'Gist Question', gist_test_passage_path(@test_passage), method: :post, class: "btn btn-alert" %>
             <%= form.submit 'Next', class: "btn btn-primary" %>
           <% end %>
+        <%= content_tag :progress, 'Progress', class: 'progress mt-2', 
+            data: { progress_value: @test_passage.current_question_number },
+            max: @test_passage.test.questions.count %>   
     </div>      
   </div>      
 </div>
