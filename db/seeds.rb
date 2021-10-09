@@ -8,11 +8,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create!(email: '5555@gmail.com',
+User.create!(email: 'eo0065110@gmail.com',
          password: '123123',
          password_confirmation: '123123',
          type: 'Admin',
          first_name: 'Bilbo',
          last_name: 'Beggins',
   )
-
+categories = Category.create([{title: 'Frontend'},
+       {title: 'Backend'},
+       {title: 'General Development'}
+       ])
