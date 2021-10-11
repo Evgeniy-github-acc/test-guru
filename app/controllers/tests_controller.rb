@@ -2,6 +2,7 @@ class TestsController < ApplicationController
 
   before_action :authenticate_user!
   before_action :set_test, only: %i[start]
+  before_action :check_empty_test, only: %i[start]
     
   def index
     @tests = Test.all
@@ -18,4 +19,7 @@ class TestsController < ApplicationController
     @test = Test.find(params[:id])
   end
 
+  def check_empty_test
+    render html: '<h1> Test is empty</h1>'.html_safe if @test.questions.first.nil?
+  end
 end
