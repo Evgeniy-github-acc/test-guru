@@ -16,6 +16,15 @@ class TestPassage < ApplicationRecord
     result >= SUCCESS_RESULT
   end
 
+  def time_out?
+    DateTime.now.to_i >= expire_time
+  end
+
+
+  def expire_time
+    self.created_at.to_i + test.timer
+  end
+
   def accept!(answer_ids)
     if correct_answer?(answer_ids)
       self.correct_questions += 1
@@ -45,7 +54,7 @@ class TestPassage < ApplicationRecord
       false
     end  
   end
-
+  
   def correct_answers
     current_question.answers.correct
   end
@@ -53,4 +62,5 @@ class TestPassage < ApplicationRecord
   def before_update_set_next_question
     self.current_question = test.questions.order(:id).where('id > ?', current_question.id).first
   end
+
 end
