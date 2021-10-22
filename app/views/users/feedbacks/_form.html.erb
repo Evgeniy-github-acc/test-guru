@@ -1,0 +1,11 @@
+
+<h2>Feedback</h2>
+
+<div class='container'>
+  <div class="form-group col-md-4">
+    <%= form_with url: users_feedbacks_path, local: true do |form| %>
+      <%= form.text_area :message, class: 'form-control' %>
+    </div>
+    <p><%= form.submit 'Send', class: 'btn btn-primary' %></p>   
+  <% end %>
+</div>  

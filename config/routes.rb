@@ -28,6 +28,9 @@ Rails.application.routes.draw do
         resources :answers, shallow: true, except: :index
       end  
     end
+  end
 
+  namespace :users do
+    resources :feedbacks, only: [:new, :create]
   end
 end
