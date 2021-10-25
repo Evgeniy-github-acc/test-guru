@@ -1,9 +1,11 @@
   <nav class="navbar navbar-light bg-info">
    <h1><%= link_to "TestGuru", root_path, class: 'navbar-brand' %></h1>
     Admin Panel
-    <span class="navbar-text">
+    <div class="navbar-text">
       <% if user_signed_in? %>
-        <%= link_to "Gists", admin_gists_path %></p>
+        <p><%= link_to "Gists", admin_gists_path %></p>
+        <p><%= link_to "Badges", admin_badges_path %></p>
+        </div>
         <p class="nav user">Welcome, <b> <%= current_user.email %></b> Guru |  
         <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
       <% else %>

@@ -9,7 +9,8 @@
        
         <p class="nav user"> Welcome, <b><%= current_user.email %></b> Guru |  
         <%= link_to " Logout", destroy_user_session_path, method: :delete %></p>
-         <%= link_to "Feedback", new_users_feedback_path %>         
+         <%= link_to "Feedback", new_users_feedback_path %>
+         <%= link_to "My badges", users_badges_path %>         
       <% else %>
         <%= link_to "Log in", new_session_path(resource_name) %> |
         <%= link_to "Sign up", new_registration_path(resource_name) %>

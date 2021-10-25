@@ -1,0 +1,21 @@
+
+<div>
+ <div class="container-fluid"> 
+  <h3><%= t('.header') %></h3> 
+  
+  <div class="m-1"><%= link_to t('.new'), new_admin_badge_path, {:class => 'btn btn-info' } %></div>
+
+  <%= render 'shared/errors', resource: @badge %>
+  
+  
+    <table class="table table-light table-bordered">
+      <tr>
+        <th><%= t('.title') %></th>
+        <th><%= t('.rule') %></th>
+        <th><%= t('.view') %></th>
+        
+      <%= render @badges %>
+    </table>
+  </div>
+
+ <div>  
