@@ -12,6 +12,9 @@
             <p>You didn't pass the test.</p>
             <p class="not_succeed">Your result: <%= @test_passage.result %>%</p>
           <% end %>
+          <% if @test_passage.time_out? %>
+            <p class="not_succeed"> Your time expired </p>
+          <% end %>  
           <div>
             <%= link_to "All tests", tests_path, class: "btn btn-primary" %>
           </div>

@@ -1,16 +1,22 @@
 <div class="row justify-content-center">
   <div class="col col-md-10">
   <%= render 'shared/errors', resource: @test_passage %>
-    <h3>Passing the <%= @test_passage.test.title %> Test</h3>
+  <h3>Passing the <%= @test_passage.test.title %> Test</h3>  
     <div class="card">
       <div class="card-header">
+       
+            <%= content_tag :div, '', id:'timer', class: 'float-right',
+            data: {test_time: @test_passage.test.timer, 
+                   question_count: @test_passage.current_question_number} %>
+           
             <p>Question <%= @test_passage.current_question_number %> of
-              <%= @test_passage.test.questions.count %></p>
+           <%= @test_passage.test.questions.count %></p>
            <b><%= @test_passage.current_question.body %></b>
+             
       </div>
 
       <div class="card-body">
-           <%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
+           <%= form_with url: test_passage_path(@test_passage), local: true, method: :put, class: 'test-passage' do |form| %>
             <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
           
             <div class="form-check">  
@@ -28,5 +34,5 @@
             data: { progress_value: @test_passage.current_question_number },
             max: @test_passage.test.questions.count %>   
     </div>      
-  </div>      
+  </div>
 </div>
