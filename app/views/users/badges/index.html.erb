@@ -1,0 +1,8 @@
+  <div>
+    <% if current_user.badges %>
+      <% current_user.badges.each do |badge| %>
+        <p><%= image_tag badge.file, size:"50x50" %></p>
+        <p><%= "You earn #{badge.name} badge" %></p>
+      <% end %>
+    <% end %>  
+  </div>

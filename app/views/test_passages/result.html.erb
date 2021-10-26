@@ -16,6 +16,14 @@
             <p class="not_succeed"> Your time expired </p>
           <% end %>  
           <div>
+          <div>
+            <% if @got_badges %>
+              <% @got_badges.each do |badge| %>
+                <p><%= image_tag badge.file, size:"50x50" %></p>
+                <p><%= "You earn #{badge.name} badge" %></p>
+              <% end %>
+            <% end %>  
+          </div>
             <%= link_to "All tests", tests_path, class: "btn btn-primary" %>
           </div>
         </div>

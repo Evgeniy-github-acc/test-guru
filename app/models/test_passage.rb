@@ -5,7 +5,8 @@ class TestPassage < ApplicationRecord
 
   before_validation :before_validation_set_first_question, on: :create
   before_update :before_update_set_next_question
-
+  before_save :succeed!
+  
   SUCCESS_RESULT = 85
 
   def completed?
@@ -14,6 +15,10 @@ class TestPassage < ApplicationRecord
 
   def success?
     result >= SUCCESS_RESULT
+  end
+
+  def succeed!
+    self.succeed = true if success?
   end
 
   def time_out?

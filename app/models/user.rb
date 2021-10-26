@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :tests, through: :test_passages
   has_many :created_tests, inverse_of: 'author', class_name: 'Test'
   has_many :gists
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, 
