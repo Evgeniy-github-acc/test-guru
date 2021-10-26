@@ -1,11 +1,10 @@
 class Admin::BadgesController < ApplicationController
 
-  before_action :set_badges, only: %i[index]
   before_action :set_badge, only: %i[ edit update destroy ]
   
 
   def index
-    
+    @badges = Badge.all  
   end
 
   def show

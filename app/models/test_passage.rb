@@ -6,8 +6,6 @@ class TestPassage < ApplicationRecord
   before_validation :before_validation_set_first_question, on: :create
   before_update :before_update_set_next_question
   before_save :succeed!
-
-  scope :user_tries, -> (user_id, test_id) { where(user_id: user_id).where(test_id: test_id).where('test_passages.succeed = ?', true).pluck }
   
   SUCCESS_RESULT = 85
 

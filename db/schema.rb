@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_093024) do
   create_table "badges", force: :cascade do |t|
     t.string "name"
     t.string "rule"
-    t.integer "rule_param"
+    t.string "rule_param"
     t.string "file"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_10_24_093024) do
     t.integer "correct_questions", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "succeed"
+    t.boolean "succeed", default: false
     t.index ["current_question_id"], name: "index_test_passages_on_current_question_id"
     t.index ["test_id"], name: "index_test_passages_on_test_id"
     t.index ["user_id"], name: "index_test_passages_on_user_id"

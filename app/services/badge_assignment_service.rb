@@ -9,10 +9,10 @@ class BadgeAssignmentService
     @user = user
   end
 
-  def assignment(user)
+  def assignment
     Badge.all.each do |badge|
       if send("#{badge.rule}", badge.rule_param) 
-        user.badges << badge
+        @user.badges << badge
         @new_badges << badge
       end              
     end
@@ -21,19 +21,19 @@ class BadgeAssignmentService
   protected
 
   def first_try_assign?(rule_param)
-    TestPassage.user_tries(@user.id, @test_passage.test_id).size == 1
+    TestPassage.all.where(user_id: @user.id, test_id: @test_passage.test_id).count == 1 && @test_passage.succeed 
   end
 
-  def complete_category_assign?(category_id)
-    category_tests = Test.category(@test_passage.test.category_id).ids
-    passed_tests = TestPassage.all.where(user_id: @user.id).where('test_passages.succeed = ?', true).pluck(:test_id)
-    (category_tests & passed_tests == category_tests) && @user.badges.where(rule: 'complete_category_assign?', rule_param: category_id).empty?
+  def complete_category_assign?(category_title)
+    category_tests = Test.tests_by_category_title(category_title)
+    passed_tests = category_tests.user_succeed_tests(@user.id)
+    passed_tests.ids == category_tests.ids && @user.badges.where(rule: 'complete_category_assign?', rule_param: category_title).empty?
   end
 
   def complete_level_assign?(level)
-    level_tests = Test.level_sort(@test_passage.test.level).ids
-    passed_tests = TestPassage.all.where(user_id: @user.id).where('test_passages.succeed = ?', true).pluck(:test_id)
-    (level_tests & passed_tests == level_tests) && @user.badges.where(rule: 'complete_level_assign?', rule_param: level).empty?
+    level_tests = Test.level_sort(@test_passage.test.level)
+    passed_tests = level_tests.user_succeed_tests(@user.id)
+    passed_tests == level_tests && @user.badges.where(rule: 'complete_level_assign?', rule_param: level).empty?
   end
 
 end
